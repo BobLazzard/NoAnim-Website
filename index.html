@@ -4,8 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoAnim</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0d0d0d;
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            max-width: 80%;
+            max-height: 70vh;
+            height: auto;
+            width: auto;
+        }
+
+        .contact {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 40px; /* space between emails */
+            font-size: 14px;
+        }
+
+        .contact a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: #ffffff;
+        }
+    </style>
 </head>
+
 <body>
-    <img src="./images/Logo_Complex_Cubes_Transparent.png" alt="Alt text for the image">
+
+    <img src="./images/Logo_Complex_Cubes_Transparent.png" 
+         alt="NoAnim Logo">
+
+    <div class="contact">
+        <a href="mailto:info@noanim.com">contact@noanim.com</a>
+        <a href="mailto:support@noanim.com">support@noanim.com</a>
+        <a href="mailto:business@noanim.com">business@noanim.com</a>
+    </div>
+
 </body>
 </html>
