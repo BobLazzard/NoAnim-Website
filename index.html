@@ -36,33 +36,8 @@
             gap: 14px;
             font-size: 14px;
         }
-
-        .contact button,
-        .contact a {
-            color: #cccccc;
-            background: none;
-            border: 1px solid #444;
-            padding: 10px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .contact button:hover,
         .contact a:hover {
             color: #ffffff;
-            border-color: #888;
-        }
-
-        #emailLink {
-            display: none;
-            border: none;
-            padding: 0;
-        }
-
-        #captchaBox {
-            display: none;
         }
     </style>
 </head>
@@ -72,17 +47,17 @@
 
     <div class="contact">
     <a id="email"></a>
-</div>
-
-<script>
-    const user = "contact";
-    const domain = "noanim.com";
-    const email = user + "@" + domain;
-
-    const link = document.getElementById("email");
-    link.href = "mailto:" + email;
-    link.textContent = email;
-</script>
+    </div>
+    
+    <script>
+        const user = "contact";
+        const domain = "noanim.com";
+        const email = user + "@" + domain;
+    
+        const link = document.getElementById("email");
+        link.href = "mailto:" + email;
+        link.textContent = email;
+    </script>
 
 </body>
 </html>
