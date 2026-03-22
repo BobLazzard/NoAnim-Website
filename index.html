@@ -35,11 +35,18 @@
             align-items: center;
             gap: 14px;
             font-size: 14px;
-
-            color: #ffffff;
         }
+        .contact a {
+            color: #ffffff;        /* make it white */
+            text-decoration: none; /* remove underline */
+        }
+        
+        .contact a:visited {
+            color: #ffffff;        /* prevent purple after click */
+        }
+        
         .contact a:hover {
-            color: #ffffff;
+            color: #ffffff;        /* keep it white on hover */
         }
     </style>
 </head>
