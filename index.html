@@ -71,42 +71,18 @@
     <img src="./images/Title_820x820.png" alt="NoAnim Logo">
 
     <div class="contact">
-        <button id="revealBtn" type="button">Show contact email</button>
-        <div id="captchaBox"></div>
-        <a id="emailLink"></a>
-    </div>
+    <a id="email"></a>
+</div>
 
-    <script>
-        const revealBtn = document.getElementById("revealBtn");
-        const captchaBox = document.getElementById("captchaBox");
-        const emailLink = document.getElementById("emailLink");
+<script>
+    const user = "contact";
+    const domain = "noanim.com";
+    const email = user + "@" + domain;
 
-        let widgetRendered = false;
-
-        revealBtn.addEventListener("click", () => {
-            captchaBox.style.display = "block";
-
-            if (!widgetRendered) {
-                turnstile.render("#captchaBox", {
-                    sitekey: "YOUR_SITE_KEY",
-                    callback: function(token) {
-                        const user = "contact";
-                        const domain = "noanim.com";
-                        const email = user + "@" + domain;
-
-                        emailLink.href = "mailto:" + email;
-                        emailLink.textContent = email;
-                        emailLink.style.display = "inline";
-
-                        revealBtn.style.display = "none";
-                        captchaBox.style.display = "none";
-                    }
-                });
-
-                widgetRendered = true;
-            }
-        });
-    </script>
+    const link = document.getElementById("email");
+    link.href = "mailto:" + email;
+    link.textContent = email;
+</script>
 
 </body>
 </html>
