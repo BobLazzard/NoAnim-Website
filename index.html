@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoAnim</title>
-
     <link rel="icon" href="./images/FavIcon_64x64.ico" sizes="any">
-    
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+
     <style>
         body {
             margin: 0;
@@ -30,74 +31,82 @@
             position: absolute;
             bottom: 30px;
             display: flex;
-            gap: 40px; /* space between emails */
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
             font-size: 14px;
         }
 
+        .contact button,
         .contact a {
             color: #cccccc;
+            background: none;
+            border: 1px solid #444;
+            padding: 10px 16px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            cursor: pointer;
+            transition: color 0.3s ease, border-color 0.3s ease;
         }
 
+        .contact button:hover,
         .contact a:hover {
             color: #ffffff;
-        }
-
-        .contact form {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .contact input {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            color: #cccccc;
-            padding: 8px 10px;
-            font-size: 14px;
-            outline: none;
-        }
-        
-        .contact input::placeholder {
-            color: #666;
-        }
-        
-        .contact input:focus {
             border-color: #888;
         }
-        
-        .contact button {
-            background-color: transparent;
-            border: 1px solid #333;
-            color: #cccccc;
-            padding: 8px 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+
+        #emailLink {
+            display: none;
+            border: none;
+            padding: 0;
         }
-        
-        .contact button:hover {
-            border-color: #ffffff;
-            color: #ffffff;
+
+        #captchaBox {
+            display: none;
         }
     </style>
 </head>
-
 <body>
 
-    <img src="./images/Title_820x820.png" 
-         alt="NoAnim Logo">
+    <img src="./images/Title_820x820.png" alt="NoAnim Logo">
 
     <div class="contact">
-    <form action="https://formspree.io/f/YOUR_ID" method="POST">
-        <input 
-            type="email" 
-            name="email" 
-            placeholder="Your email" 
-            required
-        >
-        <button type="submit">Contact</button>
-    </form>
+        <button id="revealBtn" type="button">Show contact email</button>
+        <div id="captchaBox"></div>
+        <a id="emailLink"></a>
     </div>
+
+    <script>
+        const revealBtn = document.getElementById("revealBtn");
+        const captchaBox = document.getElementById("captchaBox");
+        const emailLink = document.getElementById("emailLink");
+
+        let widgetRendered = false;
+
+        revealBtn.addEventListener("click", () => {
+            captchaBox.style.display = "block";
+
+            if (!widgetRendered) {
+                turnstile.render("#captchaBox", {
+                    sitekey: "YOUR_SITE_KEY",
+                    callback: function(token) {
+                        const user = "contact";
+                        const domain = "noanim.com";
+                        const email = user + "@" + domain;
+
+                        emailLink.href = "mailto:" + email;
+                        emailLink.textContent = email;
+                        emailLink.style.display = "inline";
+
+                        revealBtn.style.display = "none";
+                        captchaBox.style.display = "none";
+                    }
+                });
+
+                widgetRendered = true;
+            }
+        });
+    </script>
 
 </body>
 </html>
